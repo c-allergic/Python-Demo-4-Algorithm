@@ -1,5 +1,6 @@
 #import "@preview/codly:1.2.0": *
 #import "@preview/codly-languages:0.1.1": *
+#import "@preview/cetz-plot:0.1.1": plot
 #show: codly-init.with()
 #codly(
   languages:(python:(name:"",icon:"🐍")),
@@ -287,3 +288,60 @@ The idea is only calculate the loss of some sample from the dataset, reduce the 
 + Batch GD: Use all the data to calculate the gradient.
 + Stochastic GD: Use one randomly chosen data to calculate the gradient.
 + Mini-batch GD: Use a small batch of randomly chosen data to calculate the gradient.
+
+= Support Vector Machine
+== Get familiar with Logistic Regression
+
+Logistic regression is a binary classification model.
+$ f_vec(w)(vec(x)) =  1/(1+exp(-vec(w)^T vec(x))) $
+
+The loss function in logistic regression is $ L(bold(w)) = -sum_(i=1)^m y_i log(f_(bold(w))(bold(x)_i)) + (1-y_i) log(1-f_(bold(w))(bold(x)_i)) + lambda/(2m) sum_(j=1)^n w_j^2 $
+
+
+
+
+The loss function shows that if the label is 1, then the loss is $-log(f_(bold(w))(bold(x)_i))$, meaning that $f_vec(w)(vec(x)_i)$ or say $- vec(w)^T vec(x)$ should be as large as possible and vice versa. Note that the $lambda$ could be understood as how much we want to penalize the large $vec(w)$, if we care more about the loss of each example, we just set $lambda$ small.
+
+== Idea
+We set the term $-log(1/(1+exp(-vec(w)^T vec(x))))$ as $"cost"_1(vec(w)^T vec(x))$ and the term $-log(1-1/(1+exp(-vec(w)^T vec(x))))$ as $"cost"_0(vec(w)^T vec(x))$. The cost function for SVM is then: $ L(vec(w)) = C sum_(i=1)^m "cost"_(y_i)(vec(w)^T vec(x)_i) + 1/2 sum_(j=1)^n w_j^2 $
+
+Constrast to the loss function of logistic regression, we change the cost term and the constant parameter before each term. 
+
+#align(center)[
+  #table(
+  columns:2,
+  [$"cost"_1$ and $-log(1/(1+e^(-x)))$ ],[$"cost"_0$ and $-log(1-1/(1+e^(-x)))$],
+  [
+    #let f_w(x) = -calc.log(1/(1+calc.pow(calc.e,-x)))
+#figure(canvas({
+  import plot: *
+  plot(
+    size:(3,3),
+    x-tick-step: 1,
+    y-tick-step: .4,
+    axis-style: "left",
+    {
+      add(f_w,domain:(-2,2.5))
+      add(((-2,.8),(1,0),(2,0)))
+      
+    }
+  )
+}))],[#let f_w(x) = -calc.log(1- (1/(1+calc.pow(calc.e,-x))))
+#figure(canvas({
+  import plot: *
+  plot(
+    size:(3,3),
+    x-tick-step: 1,
+    y-tick-step: .4,
+    axis-style: "left",
+    {
+      add(f_w,domain:(-2.5,2))
+      add(((-2,0),(-1,0),(2,.8)))
+    }
+  )
+}))])]
+
+== Nickname: Large Margin Classifier
+When classify the data, classifier would figure out a boundary that could separate the data. The margin is defined as the distance between the boundary and the nearest point of the data. The boundary SVM figure out are the one that has the largest margin. 
+
+When the parameter of example cost $C$ is really large, the classifier would be snesitive to the outliers, which may lead to overfitting. The reason why SVM would act like this lies in the optimization problem of the cost function(SVM tend to set the cost really small when $C$ is large).
