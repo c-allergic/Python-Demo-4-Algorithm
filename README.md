@@ -2,3 +2,4 @@
 
 - Linear Regression demo
 - Ridge Regression demo
+- Gradient Descent demo
