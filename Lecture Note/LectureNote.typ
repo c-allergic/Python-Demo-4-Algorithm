@@ -289,6 +289,34 @@ The idea is only calculate the loss of some sample from the dataset, reduce the 
 + Stochastic GD: Use one randomly chosen data to calculate the gradient.
 + Mini-batch GD: Use a small batch of randomly chosen data to calculate the gradient.
 
+= Logistic Regression
+== Motivation
+There are some possible issues for classification problems: 
++ Noises: Lead to unseparable data.
++ Mediocre generalization: Only find barely boundary.
++ Overfitting: The model is too complex and fits the noise in the data.
+
+In that case, we want a model that output our confidence of the prediction and that's why we need logistic regression.
+
+#let dotp(x,y) = $#sym.quote.angle.l.single #x,#y #sym.quote.angle.r.single$
+== Idea
+- Logistic function: $ g(z) = 1/(1+e^(-z)) $
+- Logistic Regression: In binary classification task, we set our prediction $ Pr(y=1|bold(x),bold(theta),theta_0) = g(dotp(vec(theta),vec(x))+theta_0) = 1/(1+e^(-(dotp(vec(theta),vec(x))+theta_0))) $
+  This is known as class conditional probability.
+
+#proof([
+  How could we derive the form of the class conditional probability? We first define the log-odds function of both classes as a affine function of the input vector $bold(x)$:
+$ log Pr(y=1|vec(x),vec(theta),theta_0)/Pr(y=-1|vec(x),vec(theta),theta_0) = vec(theta) vec(x) + theta_0 $
+Set $Pr(y=-1|vec(x),vec(theta),theta_0) = 1- Pr(y=1|vec(x),vec(theta),theta_0)$, then:
+$ log Pr(y=1|vec(x),vec(theta),theta_0)/(1- Pr(y=1|vec(x),vec(theta),theta_0)) $
+
+Let $Pr(y=1|vec(x),vec(theta),theta_0) = a, dotp(vec(theta),vec(x)) = b$, then it is equivalent to: 
+$  &log a/(1-a) = b  => a/(1-a) = e^b => a = (1-a) e^b => a=e^b/(1+e^b)  => a = 1/(1+e^(-b)) $ 
+So $Pr(y=1|vec(x),vec(theta),theta_0) =  1/(1+e^(-dotp(vec(theta),vec(x)))) $
+
+])
+- $dotp(vec(theta),vec(x)) + theta_0 = 0$ is the decision boundary. If $dotp(vec(theta),vec(x)) + theta_0 > 0$, then $Pr(y=1|vec(x),vec(theta),theta_0) > 0.5$ and vice versa.
+
 = Support Vector Machine
 == Get familiar with Logistic Regression
 
