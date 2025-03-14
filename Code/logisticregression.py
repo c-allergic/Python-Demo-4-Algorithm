@@ -3,6 +3,7 @@ import sklearn
 from sklearn import model_selection
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+from sklearn import linear_model
 
 
 data = pd.read_csv('../../Datasets/framingham.csv')
@@ -32,7 +33,7 @@ def loss(X,Y,w,lambda_=0.001):
     z = np.dot(X, w)
     y_pred = sigmoid(z)
     epsilon = 1e-15
-    loss = -np.sum(Y * np.log(y_pred) + (1 - Y) * np.log(1 - y_pred))
+    loss = -np.sum(Y * np.log(y_pred) + (1 - Y) * np.log(1 - y_pred)) + lambda_ * np.sum(w[1:]**2) / 2
     return loss
 
 # gradient function
@@ -74,4 +75,12 @@ def predict(X, w):
 
 Y_pred = predict(X_test, w)
 accuracy = np.mean(Y_pred == Y_test.flatten())
-print("Test Accuracy:", accuracy)
+print("Test Accuracy of handmade model:", accuracy)
+
+# sklearn model
+
+logreg = linear_model.LogisticRegression(C=1e5)
+logreg.fit(X_train, Y_train)
+Y_pred = logreg.predict(X_test)
+accuracy = np.mean(Y_pred == Y_test.flatten())
+print("Test Accuracy of sklearn model:", accuracy)
