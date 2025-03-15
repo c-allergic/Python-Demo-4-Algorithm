@@ -373,3 +373,5 @@ Constrast to the loss function of logistic regression, we change the cost term a
 When classify the data, classifier would figure out a boundary that could separate the data. The margin is defined as the distance between the boundary and the nearest point of the data. The boundary SVM figure out are the one that has the largest margin. 
 
 When the parameter of example cost $C$ is really large, the classifier would be snesitive to the outliers, which may lead to overfitting. The reason why SVM would act like this lies in the optimization problem of the cost function(SVM tend to set the cost really small when $C$ is large).
+
+
