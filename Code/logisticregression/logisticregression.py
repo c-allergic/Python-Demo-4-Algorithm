@@ -4,6 +4,7 @@ from sklearn import model_selection
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn import linear_model
+import matplotlib.pyplot as plt
 
 
 data = pd.read_csv('../../Datasets/framingham.csv')
