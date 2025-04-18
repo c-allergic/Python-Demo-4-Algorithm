@@ -17,6 +17,7 @@ path = "/Users/sheldon/.cache/kagglehub/datasets/camnugent/california-housing-pr
 housing = pd.read_csv(path + "/housing.csv")
 target = housing['median_house_value']
 housing = housing.drop(columns=['median_house_value'])
+housing.drop(columns=['population'])
 
 # data preprocessing
 # feature engineering
@@ -29,7 +30,7 @@ housing['ocean_proximity'] = housing['ocean_proximity'].map({
 })
 # na values
 housing = housing.fillna(housing.mean())
-# standardize the features
+# standardize the features  
 scaler = RobustScaler()
 X_scaled = scaler.fit_transform(housing)
 scaler_y = RobustScaler()
@@ -89,22 +90,3 @@ y_pred_unscaled = scaler_y.inverse_transform(y_pred)
 y_test_original = scaler_y.inverse_transform(y_test.reshape(-1, 1)).ravel() 
 percentage_error = np.mean(np.abs(y_pred_unscaled.flatten() - y_test_original) / y_test_original)
 print(f"Percentage error: {percentage_error} %")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
