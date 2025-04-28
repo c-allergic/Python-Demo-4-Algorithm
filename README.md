@@ -16,3 +16,4 @@
 - Differential Privacy
   The matetial for class presentation of DSAA 2290
 - Support Vector Machine
+- Word Embedding 
