@@ -2,3 +2,6 @@
 Note/.DS_Store
 LinearProgramming.typ
 Code/supportvectormachine/sentiment_svm_model_20250414.joblib
+Code/RNN/RNN.typ
+Code/AdvarsarialAttack/animal_classifier.pth
+Code/AdvarsarialAttack/data
