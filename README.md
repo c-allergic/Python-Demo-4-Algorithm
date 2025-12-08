@@ -12,6 +12,7 @@
 - Multi Layer Perceptron: California housing price prediction, build the simple NN with keras. 
 ## Note
 - Machine Learning Lecture Note
+- RNN
 - Differential Privacy
 - Support Vector Machine
 - Word Embedding 
