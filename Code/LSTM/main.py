@@ -1,0 +1,1 @@
+# Script of application of LSTM
