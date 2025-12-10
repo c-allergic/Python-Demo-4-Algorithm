@@ -63,7 +63,7 @@ Let's do a *dimension analysis*:
 
     - Input Gate and Output Gate are similar  
     
-  -  Memory Cell: $C_t in [(RR^((#hidden_size,1)) dot.o RR^((#hidden_size,1))) + (RR^((#hidden_size,1)) dot.o RR^((#hidden_size,1)))] -> C_t in RR^(#hidden_size,1)$
+  -  Memory Cell: $ C_t in [(RR^((#hidden_size,1)) dot.o RR^((#hidden_size,1))) + (RR^((#hidden_size,1)) dot.o RR^((#hidden_size,1)))] -> C_t in RR^(#hidden_size,1) $
 ]
 
 For the backward process, we also use *BPTT algorithm* to train the LSTM.
