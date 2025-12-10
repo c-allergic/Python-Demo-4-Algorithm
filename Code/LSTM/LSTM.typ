@@ -52,4 +52,21 @@ At timestep $t$:
 + (Optional) Output: $y_t = f(W_y h_t + b_y)$
 ]
 
-For the backward process, we also use BPTT algorithm to train the LSTM.
+Let's do a *dimension analysis*:
+#example[
+  #let hidden_size = $N_"hidden"$
+  #let input_size = $N_"input"$
+  
+  For an input sequence $x$ of size $#input_size = D $, the dimension of different parts in the LSTM at timestep $t$ are:
+  - Gates:
+    - $sigma(RR^((#hidden_size,#input_size + #hidden_size)) dot RR^((#hidden_size + #input_size,1))) -> f_t in RR^((#hidden_size,1))$
+
+    - Input Gate and Output Gate are similar  
+    
+  -  Memory Cell: $C_t in [(RR^((#hidden_size,1)) dot.o RR^((#hidden_size,1))) + (RR^((#hidden_size,1)) dot.o RR^((#hidden_size,1)))] -> C_t in RR^(#hidden_size,1)$
+]
+
+For the backward process, we also use *BPTT algorithm* to train the LSTM.
+
+= Code Implementation
+TBD
