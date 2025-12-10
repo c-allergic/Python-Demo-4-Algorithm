@@ -1,4 +1,4 @@
-#import "@preview/noteworthy:0.2.0": *
+#import "../noteworthy/lib.typ": *
 
 #show: noteworthy.with(
   paper-size: "a4",
@@ -6,7 +6,7 @@
   language: "EN",
   title: "LSTM",
   author: "Sheldon",
-  contact-details: "https://github.com/c-allergic", // Optional: Maybe a link to your website, or phone number
+  contact-details: link("https://github.com/c-allergic",text[c-allergic]), // Optional: Maybe a link to your website, or phone number
   toc-title: "Table of Contents",
   // watermark: "DRAFT", // Optional: Watermark for the document
 )
