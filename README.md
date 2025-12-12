@@ -13,6 +13,7 @@
 ## Note
 - Machine Learning Lecture Note
 - RNN
+- LSTM
 - Differential Privacy
 - Support Vector Machine
 - Word Embedding 
