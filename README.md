@@ -3,6 +3,8 @@
 ## Code
 - Advarsarial Attack: Containing code implementation of FGSM and C&W attack
 - RNN
+- LSTM
+- GRU
 - Linear Regression 
 - Ridge Regression 
 - Gradient Descent 
@@ -14,6 +16,7 @@
 - Machine Learning Lecture Note
 - RNN
 - LSTM
+- GRU
 - Differential Privacy
 - Support Vector Machine
 - Word Embedding 

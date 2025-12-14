@@ -63,10 +63,12 @@
   )
 
   // TOC settings
+  
   show outline.entry.where(level: 1): it => {
     v(12pt, weak: true)
     strong(it)
   }
+
 
   // Heading settings
   set heading(numbering: "1.")
@@ -90,13 +92,15 @@
   )
 
   // Table of contents
-  showybox(
+  if toc-title != none {
+    showybox(
     outline(
       indent: auto,
-      title: toc-title,
-      depth: 2,
-    ),
+        title: toc-title,
+        depth: 2,
+      )
   )
+  }
 
   // Main content
   content
