@@ -61,10 +61,11 @@ When we train a shallow neural network, the performance on the training set woul
 
 The reason is that, when we initialize the weights of the neural network, the original input would be scrambled by the early layers to somehow a random vector. So then the signal in the last layers would be nothing but random noise. That means *we take the original random noise to compute the loss and gradients, and the final few layers, which get meaningless input, would learn a meaningless update. But the early layers that get meaningful input would also learn a nothing update* #link("https://www.youtube.com/watch?v=Q1JCrG1bJ-A",text(blue)[Resnet Tutorial]).
 
-So it is very hard to train a deep neural network. Besides the reason mentioned above, there are also other reasons, such as the gradient vanishing or exploding problem.
-
+To wrap up, deeper models show a degradation problem, which means the performance of them are worse than the shallow models though we use batchnorm to solve the gradient vanishing problem.
 
 Researchers try to solve this problem by introducing a new type of block, called *residual block*. They do not just simply stack simple layers but create a structure of block, whose contains two paths to process the information. The first path is the *original path*, which is the same as the general neural network. The second path is the *shortcut path*, add directly the input to the block to the output of the block.
+
+The philosophy behind this is that *if we could use a simpler model to learn the function, then we just change the later layers to a identity mapping and it would at least not make the performance worse.*
 
 == Mathmatical Formulation
 Since it is a 'net' architecture, the basic idea is the same with the general neural network. So we only model the important new features.
@@ -89,4 +90,4 @@ First let go a detour of how a convolution works by only look at the dimensions.
 
 In Residual Neural Network, instead of using basic layers, we use *bottleneck layers* to reduce the dimension. A bottleneck layer is list of convolutional layers, usually 3 layers, with the first layer to reduce the dimension, the second layer to downsample and the third layer to increase the dimension. It keeps most of the opearations in the middle layer, where the dimension is the smallest, to reduce the computation cost.
 
-So generally, after a block, the dimension would become 4 times the original dimension and the height and width would be halved. So we just use a *1x1 convolution layer* to downsample the original input and increase the dimension to the same as the output of the block, then we could do element-wise addition.
+So generally, after a block, the dimension would become 4 times the original dimension and the height and width would be halved. So we just use a *1x1 convolution layer* to downsample the original input and increase the dimension to the same as the output of the block, this helps us in the shortcut path where we add the identity mapping element-wise to the output of the block.
