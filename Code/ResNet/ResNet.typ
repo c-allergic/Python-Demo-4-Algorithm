@@ -11,7 +11,7 @@
   title: "ResNet",
   author: "Sheldon",
   contact-details: link("https://github.com/c-allergic",text[c-allergic]), // Optional: Maybe a link to your website, or phone number
-  toc-title: "Table of Contents",
+  toc-title: none,
 )
 #let residual_block = {
   import draw: *

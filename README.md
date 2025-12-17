@@ -2,6 +2,7 @@
 
 ## Code
 - Advarsarial Attack: Containing code implementation of FGSM and C&W attack
+- ResNet
 - RNN
 - LSTM
 - GRU
@@ -13,7 +14,8 @@
 - Support vector Machine: Include complete pipeline and prediction code, could use AI to help generate client.
 - Multi Layer Perceptron: California housing price prediction, build the simple NN with keras. 
 ## Note
-- Machine Learning Lecture Note
+- Machine Learning Lecture
+- ResNet
 - RNN
 - LSTM
 - GRU
